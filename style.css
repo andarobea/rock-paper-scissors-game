@@ -1,0 +1,80 @@
+body {
+    background-color: rgb(1, 5, 32);
+    justify-content: center;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.player-button {
+    align-items: center;
+    background-color: transparent;
+    font-size: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;  
+    width: 420px;  
+    height: 200px;  
+    padding-top: 100px;  
+}  
+
+h1 {
+    color:rgb(255, 255, 255);
+    font-size: 40px;
+}
+
+.printedScore {
+    font-size: 20px;
+    color: white;
+}
+
+.reset-button {
+    cursor: pointer;
+}
+
+.move-icon {    /*I want the image to shrink when clicked and then return*/
+    height: 100px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.is-clicked {
+    height: 90px;
+    transform: scale(0.8);
+}
+
+.score {
+    margin-top: 50px;
+}
+
+.reset-button {
+    align-items: center;
+    color: white;
+    background-color: rgba(166, 168, 186, 0.263);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease; /* Add a transition for smooth color change */
+}
+
+.reset-button:hover {
+    background-color: rgba(166, 168, 186, 0.5); /* Change to the desired hover color */
+}

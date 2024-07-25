@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+        <link rel="stylesheet" href="style.css"> <!--Formating of this page is found in style.css-->
+        <h1>Rock Paper Scissors<br font-size>~the online game~</h1>
+        <div class = "container">
+
+            <button class = "player-button" onclick="
+                getMove(0);
+                shrinkIcon(this);
+            "><img src = "images/rock-emoji.png" class = "move-icon"></button>
+
+            <button class = "player-button" onclick="
+                getMove(1);
+                shrinkIcon(this);
+            "><img src = "images/paper-emoji.png" class = "move-icon"></button>
+
+            <button class = "player-button" onclick="
+                getMove(2);
+                shrinkIcon(this);
+            "><img src = "images/scissors-emoji.png" class = "move-icon"></button>
+        </div>
+        <button onclick="
+            score.wins = 0;
+            score.losses = 0;
+            score.draws = 0;
+            document.querySelector('.printedScore').innerHTML = `Wins: ${score.wins}, Draws: ${score.draws}, Losses: ${score.losses}`;
+            localStorage.removeItem('score');
+        " class = "reset-button">Restart Game</button>
+        <p class = "score printedScore"></p>    <!--You also have to add score for the writing to be visible after refreshing -->
+    </body>
+    <script>
+
+        function getMove(playerMove) {  // selects computer move and updates the score
+            computer = Math.floor(Math.random() * 100) % 3; // Returns the remainder of a random generated
+                                                            // number from 0 to 99
+            console.log(computer);
+            let result = '';
+            const moves = ['rock', 'paper', 'scissors'];
+            // console.log(moves[2]);
+            if ((computer === 0 && playerMove === 1) || (computer === 1 && playerMove === 2) || 
+                (computer === 2 && playerMove === 0)) { // paper > rock, scis > paper, rock > scis
+                result = 'You won!';
+                score.wins++;
+            } else if (computer === playerMove) {
+                result = 'It\'s a draw!';
+                score.draws++;
+            } else {
+                result = 'You lost!';
+                score.losses++;
+            }
+            document.querySelector('.printedScore').innerHTML = `${result}<br>You picked ${moves[playerMove]}<br>
+            The computer picked ${moves[computer]}<br><br><br>
+            Wins: ${score.wins}, Draws: ${score.draws}, Losses: ${score.losses}`;
+            localStorage.setItem('score', JSON.stringify(score));
+        }
+
+        let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, draws: 0 };
+        // Initialize score object from localStorage or create a new one if it doesn't exist
+        document.querySelector('.printedScore').innerHTML = `Wins: ${score.wins}, Draws: ${score.draws}, Losses: ${score.losses}`;
+        const buttonElement = document.querySelector('.player-button');
+        function shrinkIcon(buttonElement) {
+            buttonElement.classList.add('is-clicked');
+            setTimeout(() => {
+                buttonElement.classList.remove('is-clicked');
+            }, 200); // Adjust the timeout duration to match the transition duration
+        }
+
+    </script>
+</html>
